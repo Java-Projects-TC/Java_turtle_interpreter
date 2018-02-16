@@ -40,25 +40,28 @@ public class ReflectingTurtle extends AbstractTurtle implements Turtle {
 
   private boolean isTravellingClockwiseVertWall() {
     return
-        xCoord == 0 && direction.toString().contains("N") ||
-            xCoord == paper.getWidth() -1 && direction.toString().contains("S");
+        xCoord == 0 && direction.toString().contains("NW") ||
+            xCoord == paper.getWidth() -1 && direction.toString().contains
+                ("SE");
   }
 
   private boolean isTravellingClockwiseHorizWall() {
-    return yCoord == 0 && direction.toString().contains("W") ||
-        yCoord == paper.getHeight() -1 && direction.toString().contains("E");
+    return yCoord == 0 && direction.toString().contains("SW") ||
+        yCoord == paper.getHeight() -1 && direction.toString().contains("NE");
   }
 
   private boolean isTravellingAntiClockwiseVertWall() {
     return
-        xCoord == 0 && direction.toString().contains("S") ||
-            xCoord == paper.getWidth() -1 && direction.toString().contains("N");
+        xCoord == 0 && direction.toString().contains("SW") ||
+            xCoord == paper.getWidth() -1 && direction.toString().contains
+                ("NE");
   }
 
   private boolean isTravellingAntiClockwiseHorizWall() {
     return
-        yCoord == 0 && direction.toString().contains("E") ||
-            yCoord == paper.getWidth() -1 && direction.toString().contains("W");
+        yCoord == 0 && direction.toString().contains("SE") ||
+            yCoord == paper.getHeight() - 1 && direction.toString().contains
+                ("NW");
   }
 
 }

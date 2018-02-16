@@ -20,8 +20,8 @@ class TurtleInterpreter {
 
   private final Map<String, Turtle> turtles = new HashMap();
   private Paper paper = new Paper(10, 10);
-  private Scanner input;
-  private PrintStream output;
+  private final Scanner input;
+  private final PrintStream output;
 
   TurtleInterpreter(Scanner input, PrintStream output) {
     this.input = input;

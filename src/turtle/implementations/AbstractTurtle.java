@@ -8,15 +8,15 @@ import turtle.util.Rotation;
 
 public abstract class AbstractTurtle implements Turtle {
 
-  protected int xCoord;
-  protected int yCoord;
+  int xCoord;
+  int yCoord;
   private Pen pen;
   private char brushChar;
-  protected Direction direction;
+  Direction direction;
   protected final Paper paper;
 
 
-  public AbstractTurtle(int x, int y, Pen pen, char brushChar,
+  AbstractTurtle(int x, int y, Pen pen, char brushChar,
       Direction direction,
       Paper paper) {
     assert paper.withinBounds(x, y) : "turtle not created on paper";

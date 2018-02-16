@@ -2,6 +2,6 @@ package turtle.util;
 
 public enum Pen {
 
-  UP, DOWN;
+  UP, DOWN
 
 }

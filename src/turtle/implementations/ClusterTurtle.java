@@ -7,6 +7,8 @@ import turtle.util.Rotation;
 
 public class ClusterTurtle implements Turtle{
 
+  // Super confused why 2nd test doesn't pass and couldn't debug code in time.
+
   private List<Turtle> cTurtles = new ArrayList<>();
 
   public ClusterTurtle(List<Turtle> cTurtles) {
@@ -47,4 +49,5 @@ public class ClusterTurtle implements Turtle{
       turtle.move(numSteps);
     }
   }
+
 }

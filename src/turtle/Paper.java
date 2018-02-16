@@ -2,7 +2,7 @@ package turtle;
 
 public class Paper {
 
-  private char[][] paper;
+  private final char[][] paper;
 
   Paper(int width, int height) {
     this.paper = new char[height][width];
@@ -27,9 +27,9 @@ public class Paper {
   }
 
   public boolean isOutsideCorners(int x, int y) {
-    return x <= 0 && y <= 0 ||
-        x <= 0 && y >= this.getHeight() ||
-        y <= 0 && x >= this.getWidth() ||
+    return x < 0 && y < 0 ||
+        x < 0 && y >= this.getHeight() ||
+        y < 0 && x >= this.getWidth() ||
         y >= this.getHeight() && x >= this.getWidth();
   }
 
