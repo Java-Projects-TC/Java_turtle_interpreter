@@ -1,9 +1,17 @@
 package turtle;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import turtle.implementations.BouncyTurtle;
+import turtle.implementations.ClusterTurtle;
+import turtle.implementations.ContinuousTurtle;
+import turtle.implementations.NormalTurtle;
+import turtle.implementations.ReflectingTurtle;
+import turtle.implementations.WrappingTurtle;
 import turtle.util.Direction;
 import turtle.util.Pen;
 import turtle.util.Rotation;
@@ -20,6 +28,8 @@ class TurtleInterpreter {
     this.output = output;
   }
 
+  // I would normally break the code down into separate methods which the
+  // switch cases call to make it neater.
   void run() {
     while (input.hasNext()) {
       String command = input.next();
@@ -30,12 +40,9 @@ class TurtleInterpreter {
           this.paper = new Paper(width, height);
           break;
         case "new":
-          input.next();
+          String type = input.next();
           String name = input.next();
-          int xCoord = input.nextInt();
-          int yCoord = input.nextInt();
-          turtles.put(name,
-              new Turtle(xCoord, yCoord, Pen.UP, '*', Direction.N, paper));
+          turtles.put(name, makeTurtle(type, name));
           break;
         case "pen":
           String turtleName = input.next();
@@ -46,6 +53,7 @@ class TurtleInterpreter {
           } else if (penState.equals("down")) {
             turtle.setPenDOWN();
           } else {
+            assert penState.length() == 1 : "not a valid pen state";
             turtle.alterBrush(penState.charAt(0));
           }
           break;
@@ -69,4 +77,44 @@ class TurtleInterpreter {
       }
     }
   }
+
+  private Turtle makeTurtle(String tType, String tname) {
+    int xCoord = input.nextInt();
+    int yCoord = input.nextInt();
+    Turtle turtle = null;
+    switch (tType) {
+      case "normal":
+        turtle = new NormalTurtle(xCoord, yCoord,
+            Pen.UP, '*', Direction.N, paper);
+        break;
+      case "bouncy":
+        turtle = new BouncyTurtle(xCoord, yCoord,
+            Pen.UP, '*', Direction.N, paper);
+        break;
+      case "continuous":
+        turtle = new ContinuousTurtle(xCoord, yCoord,
+            Pen.UP, '*', Direction.N, paper);
+        break;
+      case "wrapping":
+        turtle = new WrappingTurtle(xCoord, yCoord,
+            Pen.UP, '*', Direction.N, paper);
+        break;
+      case "reflecting":
+        turtle = new ReflectingTurtle(xCoord, yCoord,
+            Pen.UP, '*', Direction.N, paper);
+        break;
+      case "cluster":
+        // not xcoord but in a rush
+        int numTurts = xCoord;
+        List<Turtle> cTurtles = new ArrayList<>();
+        for (int i = 0; i < numTurts; i++) {
+          String subname = input.next();
+          cTurtles.add(makeTurtle(tname + "." + subname, "."));
+          turtles.put(tname + "." +subname, cTurtles.get(i));
+        }
+        turtle = new ClusterTurtle (cTurtles);
+    }
+    return turtle;
+  }
+
 }
