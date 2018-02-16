@@ -79,38 +79,47 @@ class TurtleInterpreter {
   }
 
   private Turtle makeTurtle(String tType, String tname) {
-    int xCoord = input.nextInt();
-    int yCoord = input.nextInt();
     Turtle turtle = null;
     switch (tType) {
       case "normal":
+        int xCoord = input.nextInt();
+        int yCoord = input.nextInt();
         turtle = new NormalTurtle(xCoord, yCoord,
             Pen.UP, '*', Direction.N, paper);
         break;
       case "bouncy":
+        xCoord = input.nextInt();
+        yCoord = input.nextInt();
         turtle = new BouncyTurtle(xCoord, yCoord,
             Pen.UP, '*', Direction.N, paper);
         break;
       case "continuous":
+        xCoord = input.nextInt();
+        yCoord = input.nextInt();
         turtle = new ContinuousTurtle(xCoord, yCoord,
             Pen.UP, '*', Direction.N, paper);
         break;
       case "wrapping":
+        xCoord = input.nextInt();
+        yCoord = input.nextInt();
         turtle = new WrappingTurtle(xCoord, yCoord,
             Pen.UP, '*', Direction.N, paper);
         break;
       case "reflecting":
+        xCoord = input.nextInt();
+        yCoord = input.nextInt();
         turtle = new ReflectingTurtle(xCoord, yCoord,
             Pen.UP, '*', Direction.N, paper);
         break;
       case "cluster":
-        // not xcoord but in a rush
-        int numTurts = xCoord;
+        int numTurts = input.nextInt();
         List<Turtle> cTurtles = new ArrayList<>();
         for (int i = 0; i < numTurts; i++) {
-          String subname = input.next();
-          cTurtles.add(makeTurtle(tname + "." + subname, "."));
-          turtles.put(tname + "." +subname, cTurtles.get(i));
+          input.next();
+          String subType = input.next();
+          String subName = input.next();
+          cTurtles.add(makeTurtle(subType,tname + "." + subName));
+          turtles.put(tname + "." + subName, cTurtles.get(i));
         }
         turtle = new ClusterTurtle (cTurtles);
     }

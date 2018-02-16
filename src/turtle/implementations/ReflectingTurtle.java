@@ -18,16 +18,20 @@ public class ReflectingTurtle extends AbstractTurtle implements Turtle {
     if (direction.isOrdinal() ||
         paper.isOutsideCorners(xCoord + xStep, yCoord + yStep)) {
       rotateTurtle(180, Rotation.RIGHT);
-    } else if (isTravellingClockwiseVertWall()) {
+    }
+    else if (isTravellingClockwiseVertWall()) {
       rotateTurtle(90, Rotation.RIGHT);
       yCoord += direction.getY();
-    } else if (isTravellingClockwiseHorizWall()) {
+    }
+    else if (isTravellingClockwiseHorizWall()) {
       rotateTurtle(90, Rotation.RIGHT);
       xCoord += direction.getX();
-    } else if (isTravellingAntiClockwiseVertWall()) {
+    }
+    else if (isTravellingAntiClockwiseVertWall()) {
       rotateTurtle(90, Rotation.LEFT);
       yCoord += direction.getY();
-    } else if (isTravellingAntiClockwiseHorizWall()) {
+    }
+    else if (isTravellingAntiClockwiseHorizWall()) {
       rotateTurtle(90, Rotation.LEFT);
       xCoord += direction.getX();
     }
