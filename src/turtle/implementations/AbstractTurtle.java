@@ -14,6 +14,7 @@ public abstract class AbstractTurtle implements Turtle {
   private char brushChar;
   Direction direction;
   protected final Paper paper;
+  private static final int DEGREES_PER_TURN = 45;
 
 
   AbstractTurtle(int x, int y, Pen pen, char brushChar,
@@ -41,10 +42,10 @@ public abstract class AbstractTurtle implements Turtle {
   }
 
   public void rotateTurtle(int angle, Rotation rotation) {
-    assert (angle % 45 == 0) : " incorrect rotation angle";
+    assert (angle % DEGREES_PER_TURN == 0) : " incorrect rotation angle";
     while (angle > 0) {
       direction = direction.rotate(rotation);
-      angle -= 45;
+      angle -= DEGREES_PER_TURN;
     }
   }
 

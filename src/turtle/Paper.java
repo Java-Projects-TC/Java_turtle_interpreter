@@ -35,20 +35,22 @@ public class Paper {
 
   public void markPaper(int x, int y, char character) {
     if (withinBounds(x, y)) {
+      // y == 0  is at the bottom left as opposed to top left so need to do
+      // height - 1 - y
       paper[(this.getHeight() - 1) - y][x] = character;
     }
   }
 
   public String toString() {
-    String output = "";
+    StringBuilder sb = new StringBuilder();
     for (char[] lines : paper) {
-      for (char character : lines) {
-        output += character;
-      }
-      output += "\n";
+      sb.append(lines);
+      sb.append("\n");
     }
-    return output;
+    return sb.toString();
   }
+
+
 
 
 }

@@ -16,6 +16,10 @@ public class WrappingTurtle extends AbstractTurtle implements Turtle {
   // get on to part III.
   @Override
   protected boolean actionAtEdge(int xStep, int yStep) {
+    /* Can't get this to work
+    yCoord = (yCoord + yStep) % paper.getHeight();
+    xCoord = (xCoord + xStep) % paper.getWidth();
+    */
     if (yCoord == paper.getHeight()-1){
       yCoord = 0;
       xCoord += xStep;
